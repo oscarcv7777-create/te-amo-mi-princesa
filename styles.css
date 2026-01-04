@@ -1,0 +1,124 @@
+:root{
+  --pink-1:#ffb3d1;
+  --pink-2:#ff6fb1;
+  --pink-3:#ff3f93;
+  --white:#ffffff;
+  --shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:#3a1330;
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(900px 700px at 90% 30%, rgba(255,255,255,.35), transparent 55%),
+    linear-gradient(135deg, var(--pink-1), var(--pink-2), var(--pink-3));
+  overflow:hidden;
+}
+
+.wrap{
+  min-height:100%;
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
+
+.card{
+  width:min(980px, 96vw);
+  height:min(560px, 80vh);
+  background: rgba(255,255,255,.22);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+.photo{
+  /* ✅ FOTO EN LA RAÍZ DEL REPO */
+  background-image: url("IMG_2500.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* capa suave para que el texto “resalte” mejor */
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(0,0,0,.12), rgba(0,0,0,.00) 55%);
+  pointer-events:none;
+}
+
+.center-message{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:34px 28px;
+}
+
+.title{
+  margin:0;
+  font-weight:900;
+  letter-spacing:.5px;
+  line-height:1.05;
+  font-size: clamp(30px, 4vw, 56px);
+  color: var(--white);
+  text-shadow:
+    0 3px 0 rgba(0,0,0,.12),
+    0 12px 35px rgba(0,0,0,.35);
+}
+
+.hearts{
+  display:inline-block;
+  margin-left:10px;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+}
+
+.subtitle{
+  margin:12px 0 0;
+  color: rgba(255,255,255,.92);
+  font-weight:600;
+  font-size: clamp(14px, 1.4vw, 18px);
+  text-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+
+.heart-row{
+  margin-top:18px;
+  display:flex;
+  gap:10px;
+  font-size: 22px;
+  transform: translateZ(0);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.08); }
+}
+
+/* Responsive */
+@media (max-width: 860px){
+  body{ overflow:auto; }
+  .card{
+    grid-template-columns: 1fr;
+    height:auto;
+  }
+  .photo{
+    height: 320px;
+  }
+  .card::after{
+    background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.00) 60%);
+  }
+}
